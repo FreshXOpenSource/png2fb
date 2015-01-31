@@ -206,7 +206,7 @@ int main(int argc, char**argv)
   }
   if(color_type==PNG_COLOR_TYPE_GRAY||color_type==PNG_COLOR_TYPE_GRAY_ALPHA)
   {
-   if(bit_depth<8)png_set_gray_1_2_4_to_8(png_ptr);
+   if(bit_depth<8)png_set_expand_gray_1_2_4_to_8(png_ptr);
    png_set_gray_to_rgb(png_ptr);
   }
   if(bit_depth<8)
@@ -218,7 +218,7 @@ int main(int argc, char**argv)
     png_set_strip_alpha(png_ptr);
   }
   png_read_update_info(png_ptr, info_ptr);
-  row_pointers=png_malloc(png_ptr, iheight*png_sizeof(png_bytep));
+  row_pointers=png_malloc(png_ptr, iheight*sizeof(png_bytep));
   if(!row_pointers)
   {
    perror("PNG memory");
